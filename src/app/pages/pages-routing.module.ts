@@ -5,6 +5,7 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { WorkFromHomeComponent } from './work-from-home/work-from-home.component';
 
 const routes: Routes = [{
   path: '',
@@ -13,6 +14,15 @@ const routes: Routes = [{
     {
       path: 'dashboard',
       component: ECommerceComponent,
+    },
+    {
+      path: 'filter',
+      loadChildren: () => import('./filter/filter.module')
+        .then(m => m.FilterModule),
+    },
+    {
+      path: 'work-from-home',
+      component: WorkFromHomeComponent,
     },
     {
       path: 'iot-dashboard',

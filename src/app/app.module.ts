@@ -19,11 +19,13 @@ import {
   NbSidebarModule,
   NbToastrModule,
   NbWindowModule,
+  NbTimepickerModule,
 } from '@nebular/theme';
-import { CategoryComponent } from './category/category.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
 
 @NgModule({
-  declarations: [AppComponent, CategoryComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -34,12 +36,14 @@ import { CategoryComponent } from './category/category.component';
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
+    NbTimepickerModule.forRoot(),
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    
   ],
   bootstrap: [AppComponent],
 })
