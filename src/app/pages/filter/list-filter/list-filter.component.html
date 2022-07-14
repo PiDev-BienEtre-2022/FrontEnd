@@ -1,0 +1,10 @@
+<nb-card>
+    <nb-card-header>
+       Team Filter
+    </nb-card-header>
+
+    <nb-card-body>
+        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (create)="onCreateClick($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

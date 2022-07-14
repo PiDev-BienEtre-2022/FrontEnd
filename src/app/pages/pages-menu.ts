@@ -2,6 +2,17 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
+    title: 'Work Form Home',
+    icon: 'calendar-outline',
+    link: '/pages/work-from-home',
+    home: true,
+  },
+  {
+    title: 'Team Filter',
+    icon: 'funnel-outline',
+    link: '/pages/filter/list',
+  },
+  {
     title: 'E-commerce',
     icon: 'shopping-cart-outline',
     link: '/pages/dashboard',
