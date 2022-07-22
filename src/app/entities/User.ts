@@ -7,3 +7,6 @@ export interface User {
     phone: number;
     imgUrl: string;
 }
+
+
+
