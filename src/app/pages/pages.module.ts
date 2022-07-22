@@ -9,6 +9,10 @@ import { PagesRoutingModule } from './pages-routing.module';
 import { MiscellaneousModule } from './miscellaneous/miscellaneous.module';
 import { WorkFromHomeComponent } from './work-from-home/work-from-home.component';
 import { FilterComponent } from './filter/filter.component';
+import { CategoryComponent } from './category/category.component';
+import { EvaluationComponent } from './evaluation/evaluation.component';
+import { MyevaluationComponent } from './myevaluation/myevaluation.component';
+import { TrainingComponent } from './training/training.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
@@ -26,6 +30,10 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     PagesComponent,
     WorkFromHomeComponent,
     FilterComponent,
+    CategoryComponent,
+    EvaluationComponent,
+    MyevaluationComponent,
+    TrainingComponent,
   ],
 })
 export class PagesModule {

@@ -1,0 +1,42 @@
+<nb-card>
+    <nb-card-header>
+       My Evaluation List
+    </nb-card-header>
+    <nb-card-body>
+
+      <div *ngIf="exist == false && existList == false">
+        <p>No data found</p>
+      </div>
+
+
+      <div class="row" *ngIf="exist">
+        <div class="col-lg-12 inprogress">
+          <nb-card>
+            <nb-card-header>Evaluation In progress</nb-card-header>
+            <nb-card-body>
+              <small><b>Date First validation: </b> {{currentEval.date_goals}} </small>
+              <br>
+              <small><b>Date Final validation: </b>  {{currentEval.date_eval}} </small>
+            </nb-card-body>
+            <nb-card-footer>
+              <a (click)="viewDetails(currentEval.id)">View Details &nbsp; <i class="fa fa-arrow-right"></i></a>
+            </nb-card-footer>
+          </nb-card>
+        </div>
+      </div>
+      <div class="row" *ngIf="existList">
+        <div class="col-lg-4" *ngFor="let evalList of evalList">
+          <nb-card>
+            <nb-card-body>
+              <small><b>Date Final validation: </b> {{evalList.date_eval}} </small>
+              <br>
+              <small><b>Score: </b> {{evalList.score}} %</small>
+            </nb-card-body>
+            <nb-card-footer>
+              <a (click)="viewDetails(evalList.id)">View Details &nbsp; <i class="fa fa-arrow-right"></i></a>
+            </nb-card-footer>
+          </nb-card>
+        </div>
+      </div>
+    </nb-card-body>
+</nb-card>

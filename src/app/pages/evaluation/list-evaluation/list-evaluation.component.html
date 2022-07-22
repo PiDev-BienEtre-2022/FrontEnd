@@ -1,0 +1,34 @@
+<nb-card>
+    <nb-card-header>
+       Evaluation List
+       <button (click)="onCreateClick($event)" nbButton status="primary" class="addBtn">Add Evaluation</button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-tabset>
+            <nb-tab tabTitle="Goals not Validated">
+              <div class="alert {{type}}" role="alert" [style.display]='displayDelete'>{{message}}</div>
+              <ng2-smart-table [settings]="settingsOne" [source]="sourceOne" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)">
+              </ng2-smart-table>
+            </nb-tab>
+            <nb-tab tabTitle="In progress">
+              <ng2-smart-table [settings]="settingsTwo" [source]="sourceTwo" (edit)="onValidate($event)">
+              </ng2-smart-table>
+            </nb-tab>
+            <nb-tab tabTitle="Validated" class="Validated">
+              <nb-card *ngFor="let user of user">
+                <nb-card-body>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <b class="name">{{user.username}}</b><br>
+                      <small><b>Email: </b> {{user.email}}</small><br>
+                    </div>
+                    <div class="col-md-4 text-right">
+                      <a (click)="show(user.id)">Show Evaluations <i class="fa fa-eye" aria-hidden="true"></i></a>
+                    </div>
+                  </div>  
+                </nb-card-body>
+              </nb-card>
+            </nb-tab>
+           </nb-tabset>
+    </nb-card-body>
+</nb-card>

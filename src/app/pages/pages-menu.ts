@@ -2,6 +2,10 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
+    title: 'Module',
+    group: true,
+  },
+  {
     title: 'Work Form Home',
     icon: 'calendar-outline',
     link: '/pages/work-from-home',
@@ -13,18 +17,50 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/filter/list',
   },
   {
-    title: 'E-commerce',
-    icon: 'shopping-cart-outline',
-    link: '/pages/dashboard',
+    title: 'Module',
+    group: true,
+  },
+  {
+    title: 'Category',
+    icon: 'grid-outline',
+    link: '/pages/category/list',
     home: true,
   },
   {
-    title: 'IoT Dashboard',
-    icon: 'home-outline',
-    link: '/pages/iot-dashboard',
+    title: 'Evaluation',
+    icon: 'edit-2-outline',
+    link: '/pages/evaluation/list',
   },
   {
-    title: 'FEATURES',
+    title: 'My Evaluation',
+    icon: 'edit-2-outline',
+    link: '/pages/myevaluation/list',
+  },
+  {
+    title: 'Training Admin',
+    icon: 'list',
+    link: '/pages/training/list',
+  },
+  {
+    title: 'Training',
+    icon: 'list',
+    children: [
+      {
+        title: 'All Trainings',
+        link: '/pages/training/list',
+      },
+      {
+        title: 'Allowd Trainings',
+        link: '/pages/training/list',
+      },
+      {
+        title: 'My participations',
+        link: '/pages/training/list',
+      },
+    ],
+  },
+  {
+    title: 'Module',
     group: true,
   },
   {

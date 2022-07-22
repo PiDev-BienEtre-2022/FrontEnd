@@ -7,6 +7,7 @@ import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { WorkFromHomeComponent } from './work-from-home/work-from-home.component';
 
+
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
@@ -25,13 +26,24 @@ const routes: Routes = [{
       component: WorkFromHomeComponent,
     },
     {
-      path: 'iot-dashboard',
-      component: DashboardComponent,
+      path: 'category',
+      loadChildren: () => import('./category/category.module')
+        .then(m => m.CategoryModule),
     },
     {
-      path: 'layout',
-      loadChildren: () => import('./layout/layout.module')
-        .then(m => m.LayoutModule),
+      path: 'evaluation',
+      loadChildren: () => import('./evaluation/evaluation.module')
+        .then(m => m.EvaluationModule),
+    },
+    {
+      path: 'myevaluation',
+      loadChildren: () => import('./myevaluation/myevaluation.module')
+        .then(m => m.MyevaluationModule),
+    },
+    {
+      path: 'training',
+      loadChildren: () => import('./training/training.module')
+        .then(m => m.TrainingModule),
     },
     {
       path: 'forms',

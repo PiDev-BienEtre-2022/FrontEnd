@@ -1,0 +1,31 @@
+@import '../../../@theme/styles/themes';
+
+@include nb-install-component() {
+  nb-card {
+    transform: translate3d(0, 0, 0);
+  }
+  .addBtn,  .addBtn:hover,  .addBtn:active, .addBtn:focus, .addBtn:visited {float: right;
+    font-family: inherit;
+    text-transform: capitalize;
+    border: 0;}
+    nb-tabset {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    :host ::ng-deep ngx-tab1, :host ::ng-deep ngx-tab2 {
+      display: block;
+      padding: 1rem 2rem;
+    }
+
+    .Validated  nb-card {margin-bottom: 5px; border-color: #c9c9c9;}
+    .Validated  nb-card-body {padding: 10px 20px;}
+    .Validated a{font-family: cursive;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      }
+      .Validated .name {color: #ef8123 !important;}
+
+}

@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>{{Title}}</nb-card-header>
+      <nb-card-body>
+        <form #addForm="ngForm">
+          <div class="row">
+
+            <input type="hidden" nbInput fullWidth name="id" id="id" [(ngModel)]="category.id">
+
+
+            <div class="form-group col-sm-4">
+              <label for="ftype" class="label">Category Name *</label>
+              <br />
+              <input type="text" nbInput fullWidth name="nom" id="nom" [(ngModel)]="category.nom" #nameAdd="ngModel" ngModel required>
+              <div *ngIf="nameAdd.invalid && nameAdd.touched">
+                <br>
+                <p class="error-message">
+                  Category Name is required !
+                </p>
+            </div>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <label class="label">Domain *</label>
+              <br />
+              <nb-select fullWidth name="domain" id="domain" [(ngModel)]="category.domain" #domainAdd="ngModel" ngModel required>
+                <nb-option value="Software">Software</nb-option>
+                <nb-option value="Administration">Administration</nb-option>
+                <nb-option value="Soft">Soft</nb-option>
+                <nb-option value="Management">Management</nb-option>
+              </nb-select>
+              <div *ngIf="domainAdd.invalid && domainAdd.touched">
+                <br>
+                <p class="error-message">
+                  Domain is required !
+                </p>
+              </div>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <label for="percentage" class="label">Percentage *</label>
+              <input type="number" nbInput fullWidth id="percentage" min="0" name="percentage" id="percentage" [(ngModel)]="category.percentage" #percentageAdd="ngModel" ngModel required>
+              <div *ngIf="percentageAdd.invalid && percentageAdd.touched">
+                <br>
+                <p class="error-message">
+                  Percentage is required !
+                </p>
+            </div>
+            </div>
+
+          </div>
+          <button type="submit" nbButton status="danger" [disabled] = "addForm.invalid" (click)="addOrUpdate(addForm.value)" [style.display]='displayBtn'>Submit</button>
+          <br>
+          <div class="alert {{type}}" role="alert" [style.display]='displayAdd'>{{message}}</div>
+        </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="row">
+  <div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>{{Title}}</nb-card-header>
+      <nb-card-body>
+        <form #addForm="ngForm">
+          <input type="hidden" nbInput fullWidth name="id" id="id" [(ngModel)]="evaluation.id">
+
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label class="label">User *</label>
+              <br />
+              <nb-select fullWidth name="user" id="user" [(ngModel)]="evaluation.user.username" #userAdd="ngModel" ngModel required [disabled] = "column">
+                <nb-option *ngFor="let UsersList of UsersList" value="{{UsersList.id}}">{{UsersList.username}}</nb-option>
+              </nb-select>
+              <div *ngIf="userAdd.invalid && userAdd.touched">
+                <br>
+                <p class="error-message">
+                  User is required !
+              </p>
+            </div>
+            </div>
+
+            <div class="form-group col-sm-4">
+              <label class="label">Min percentage domain *</label>
+              <br />
+              <input type="number" nbInput fullWidth name="min_per_domain" id="min_per_domain" [(ngModel)]="evaluation.min_per_domain" #MinPerDomainAdd="ngModel" ngModel required min="0">
+              <div *ngIf="MinPerDomainAdd.invalid && MinPerDomainAdd.touched">
+                <br>
+                <p class="error-message">
+                  Min percentage domain is required !
+              </p>
+              </div>
+            </div>
+            <div class="form-group col-sm-4">
+              <label class="label"> Number of goals domain *</label>
+              <br />
+              <input type="number" nbInput fullWidth name="nb_goals_domain" id="nb_goals_domain" [(ngModel)]="evaluation.nb_goals_domain" #NbGoalsDomainAdd="ngModel" ngModel required min="0" [disabled] = "column">
+              <div *ngIf="NbGoalsDomainAdd.invalid && NbGoalsDomainAdd.touched">
+                <br>
+                <p class="error-message">
+                  Number of goals domain is required !
+              </p>
+              </div>
+            </div>
+            <div class="form-group col-sm-4">
+              <label class="label">Number of goals other domain *</label>
+              <br />
+              <input type="number" nbInput fullWidth name="nb_goals_other" id="nb_goals_other" [(ngModel)]="evaluation.nb_goals_other" #NbGoalsOtherAdd="ngModel" ngModel required min="0" [disabled] = "column">
+              <!-- <div *ngIf="NbGoalsOtherAdd.invalid && NbGoalsOtherAdd.touched">
+                <br>
+                <p class="error-message">
+                  Number of goals other domain is required !
+              </p>
+              </div> -->
+            </div>
+
+            
+            <div class="form-group col-sm-6">
+              <label for="ftype" class="label">Date First validation *</label>
+              <br />
+              <div class="date">
+                <input nbInput  [nbDatepicker]="datefirstTimePicker" fullWidth [(ngModel)]="evaluation.date_goals"  name="date_goals" #datefirstInput ngModel required>
+                <nb-datepicker #datefirstTimePicker [filter]="filterFn" ></nb-datepicker>          
+                <button nbSuffix nbButton ghost (click)="datefirstInput.click()">
+                  <nb-icon icon="calendar"> </nb-icon>
+                </button>
+                <!-- <div *ngIf="datefirstInput.invalid && datefirstInput.touched">
+                  <br>
+                  <p class="error-message">
+                    Date First validation is required !
+                </p>
+                </div> -->
+              </div>
+            </div>
+          
+
+            <div class="form-group col-sm-6">
+              <label for="ftype" class="label">Date Final validation *</label>
+              <br />
+              <div class="date">
+                <input nbInput  [nbDatepicker]="datefinalTimePicker" fullWidth [(ngModel)]="evaluation.date_eval"  name="date_eval" #datefinalInput ngModel required>
+                <nb-datepicker #datefinalTimePicker [filter]="filterFn" ></nb-datepicker>          
+                <button nbSuffix nbButton ghost (click)="datefinalInput.click()">
+                  <nb-icon icon="calendar"> </nb-icon>
+                </button>
+              </div>
+            </div>
+          </div> 
+      
+          <div class="row" [style.display]='listGoals'>
+            <div class="col-lg-12">
+              <div class="borderGoals">
+                <p class="sub-title">Goals List</p>
+                <br>
+                <div [style.display]='nothing'>
+                  <p>No data found</p>
+                </div>
+                <nb-accordion [style.display]='empty'>
+                  <nb-accordion-item *ngFor="let goalsList of goalsList">
+                   <nb-accordion-item-header>{{goalsList.titre}}</nb-accordion-item-header>
+                   <nb-accordion-item-body>
+                    <small style="color:green"><b>Category : {{goalsList.category.nom}}</b></small> <br>
+                    {{goalsList.description}}
+                   </nb-accordion-item-body>
+                  </nb-accordion-item>
+                </nb-accordion>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="inlineBtn">
+            <button type="submit" nbButton status="danger" [disabled] = "addForm.invalid" (click)="add(addForm.value)" [style.display]='displayBtn'>Submit</button>
+            <button type="submit" nbButton status="success" [style.display]='listGoalsBtn' [disabled] = "disabledValidate" (click)="validateGoals(addForm.value)">Validate Goals</button>
+          </div>
+          <br>
+          <div class="alert {{type}}" role="alert" [style.display]='displayAdd'>{{message}}</div>
+       </form>
+      </nb-card-body>
+    </nb-card>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<nb-card>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="alert alert-secondary" role="alert">
+          <small><b>Date First validation: </b> {{evaluation.date_goals}} </small><br>
+          <small><b>Date Final validation: </b> {{evaluation.date_eval}} </small><br>
+          <small><b>Min percentage Domain: </b> {{evaluation.min_per_domain}} %</small><br>
+          <small><b>Number of goals domain: </b> {{evaluation.nb_goals_domain}} </small><br>
+          <small><b>Number of goals domain: </b> {{evaluation.nb_goals_other}} </small><br>          
+        </div>
+    
+        <div class="alert alert-success" role="alert">
+          <small><b>Score: </b> {{evaluation.score}} %</small><br>
+          <small><b>Comment: </b> {{evaluation.comment}} </small><br>
+        </div>
+
+        <ng2-smart-table [settings]="settings" [source]="source">
+        </ng2-smart-table>
+
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>

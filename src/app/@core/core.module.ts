@@ -54,6 +54,16 @@ import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
 import { FilterData } from './data/FilterData';
 import { FilterService } from './mock/FilterService.service';
+import { CategoryData } from './data/CategoryData';
+import { CategoryService } from './mock/CategoryService.service';
+import { UserrData } from './data/UserData';
+import { UserrService } from './mock/UserService.service';
+import { EvaluationData } from './data/EvaluationData';
+import { EvaluationService } from './mock/EvaluationService.service';
+import { TrainingData } from './data/TrainingData';
+import { TrainingService } from './mock/TrainingService.service';
+import { GoalData } from './data/GoalData';
+import { GoalService } from './mock/GoalService.service';
 
 const socialLinks = [
   {
@@ -74,6 +84,11 @@ const socialLinks = [
 ];
 
 const DATA_SERVICES = [
+  { provide: UserrData, useClass: UserrService },
+  { provide: GoalData, useClass: GoalService },
+  { provide: TrainingData, useClass: TrainingService },
+  { provide: CategoryData, useClass: CategoryService },
+  { provide: EvaluationData, useClass: EvaluationService },
   { provide: FilterData, useClass: FilterService },
   { provide: UserData, useClass: UserService },
   { provide: ElectricityData, useClass: ElectricityService },

@@ -1,0 +1,33 @@
+<nb-card>
+  <nb-card-header>
+     <b>{{user.username}}</b> List Evaluations
+  </nb-card-header>
+  <nb-card-body>
+    <div *ngIf="existList == false">
+      <p>No data found</p>
+    </div>
+    <div class="row" *ngIf="existList">
+      <div class="col-lg-4" *ngFor="let evalList of evalList">
+        <nb-card>
+          <nb-card-body>
+            <small><b>Date Final validation: </b> {{evalList.date_eval}} </small>
+            <br>
+            <small><b>Score: </b> {{evalList.score}} %</small>
+          </nb-card-body>
+          <nb-card-footer>
+            <a (click)="viewDetails(evalList.id)">View Details &nbsp; <i class="fa fa-arrow-right"></i></a>
+          </nb-card-footer>
+        </nb-card>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+
+<nb-card>
+  <nb-card-header>
+     Statistiques
+  </nb-card-header>
+  <nb-card-body>
+    
+  </nb-card-body>
+</nb-card>

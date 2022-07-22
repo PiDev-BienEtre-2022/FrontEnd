@@ -1,0 +1,12 @@
+<nb-card>
+    <nb-card-header>
+       Categories List
+       <button (click)="onCreateClick($event)" nbButton status="primary" class="addBtn">Add Category</button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="alert {{type}}" role="alert" [style.display]='displayDelete'>{{message}}</div>
+
+        <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>
