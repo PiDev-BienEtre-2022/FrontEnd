@@ -4,7 +4,15 @@
     </nb-card-header>
 
     <nb-card-body>
-        <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" (create)="onCreateClick($event)">
+        <ng2-smart-table [settings]="settings" [source]="source" (custom)="onCustomAction($event)" (deleteConfirm)="onDeleteConfirm($event)" (edit)= "onEditClick($event)" (create)="onCreateClick($event)">
         </ng2-smart-table>
     </nb-card-body>
 </nb-card>
+<ng-template #contentTemplate let-info>
+    <p><b>Filter Name : </b> {{ info.name }} </p>
+    <p><b>Accept Criteria :  </b>  <span [innerHTML]="info.acceptCriteria"></span> </p>
+    <p><b>Commit the filter Result : </b> {{ info.commit }} </p>
+    <p><b>Run Filter Each : </b> {{ info.run }} </p>
+    <p style="color: red;">{{ info.sortLogic }} </p>
+</ng-template>
+  

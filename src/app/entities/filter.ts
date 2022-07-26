@@ -3,10 +3,10 @@ export class Filter {
     nom: string;
     eqPeriode :string;
     eqFilterType :string;
-    eqMetrique :string;
+    eqMetrique :number;
     epPeriode :string;
     epFilterType :string;
-    epMetrique :string;
+    epMetrique :number;
     commitLogic :string;
     runSchedule :string;
     runAt :string;

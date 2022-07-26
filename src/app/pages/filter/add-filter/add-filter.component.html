@@ -1,16 +1,20 @@
 <div class="row">
   <div class="col-lg-12">
     <nb-card>
-      <nb-card-header>Add New Filter</nb-card-header>
+      <nb-card-header>{{mode}} New Filter</nb-card-header>
       <nb-card-body>
-        <form>
+        <form  id="filter-form" class="form" name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm"  novalidate>
           <div class="form-group">
-            <label for="name" class="label">Filter Name</label>
-            <input type="text" nbInput fullWidth id="name" placeholder="name">
+            <label for="nom" class="label">Filter Name</label>
+            <input type="text" nbInput fullWidth id="nom" name="nom" placeholder="name" [(ngModel)]="filter.nom" #nom="ngModel" [ngClass]="{ 'is-invalid': f.submitted && nom.invalid }" required>
+            <div *ngIf="nom.invalid && nom.touched" >
+              <br/>
+              <div *ngIf="nom.errors.required" class="alert alert-danger" role="alert">Filter Name is required</div>
+          </div>
           </div>
           <div class="form-group">
             <label for="appliedFor" class="label">Applied For:</label>
-            <nb-radio-group [(value)]="appliedFor" class="row col-sm-12"  >
+            <nb-radio-group [(value)]="appliedFor" class="row col-sm-12"  (valueChange)="onChange($event)" >
               <nb-radio
                 [value]="'team'">
                 Team
@@ -23,51 +27,84 @@
           </div>
           <div class="row">
             <div class="form-group col-sm-4">
-              <label for="ftype" class="label">Type</label>
+              <label for="filterType" class="label" >Type</label>
               <br/>
-              <nb-select  fullWidth>
-                <nb-option value="static">Static</nb-option>
-                <nb-option value="dynamic">Dynamic</nb-option>
+              <nb-select fullWidth [disabled] = "appliedFor != 'team'" id="filterType" name="filterType"  [(ngModel)]="values.filterType" #filterType="ngModel" [ngClass]="{ 'is-invalid': f.submitted && filterType.invalid }" required>
+                <nb-option value="fstatic">Static</nb-option>
+                <nb-option value="fdynamic" >Dynamic</nb-option>
               </nb-select>
             </div>
             <div class="form-group col-sm-4">
-              <label for="period" class="label">Period</label>
+              <label for="filterPeriod" class="label">Period</label>
               <br/>
-              <nb-select  fullWidth>
+              <nb-select  fullWidth id="filterPeriod" name="filterPeriod"  [(ngModel)]="values.filterPeriod" #filterPeriod="ngModel" [ngClass]="{ 'is-invalid': f.submitted && filterPeriod.invalid }" required>
                 <nb-option value="week">Weekly</nb-option>
                 <nb-option value="month">Monthly</nb-option>
               </nb-select>
             </div>
             <div class="form-group col-sm-4">
-              <label for="metric" class="label">Metric</label>
-              <input type="number" nbInput fullWidth id="metric" min="0">
+              <label for="filterMetric" class="label">Metric</label>
+              <input type="number" nbInput fullWidth id="filterMetric" min="1" id="filterMetric" name="filterMetric"  [(ngModel)]="values.filterMetric" #filterMetric="ngModel" [ngClass]="{ 'is-invalid': f.submitted && filterMetric.invalid }" required>
+              
+            </div>
+            <div class="col-sm-12">
+              <div *ngIf="(filterMetric.invalid || values.filterMetric == 0) && filterMetric.touched" >
+                <br/>
+                <div *ngIf="filterMetric.errors.required" class="alert alert-danger" role="alert">Metric is required</div>
+            </div>
             </div>
           </div>
           <div class="form-group">
             <label for="commitLogic" class="label">Commit Logic</label>
             <br/>
-            <nb-select selected="1"  fullWidth>
-              <nb-option value="week">Weekly</nb-option>
-              <nb-option value="month">Monthly</nb-option>
+            <nb-select   fullWidth id="commitLogic" name="commitLogic"  [(ngModel)]="filter.commitLogic" #commitLogic="ngModel" [ngClass]="{ 'is-invalid': f.submitted && commitLogic.invalid }" required>
+              <nb-option value="all">All</nb-option>
+              <nb-option value="onlyAccept">Only Accept</nb-option>
+              <nb-option value="onlyRefus">Only Refuse</nb-option>
+              <nb-option value="refusWithNoNote">Refuse if No note found</nb-option>
+              <nb-option value="refusNotUrgent">Refuse Not Urgent</nb-option>
+              <nb-option value="refusUrgentAndLess">Accept Only Urgent</nb-option>
             </nb-select>
           </div>
-          <div class="row">
-            <div class="form-group col-sm-6" >
-              <label for="runSchedule" class="label">Run Schedule</label>
+          <div class="form-group" >
+              <label for="runSchedule" class="label"  >Run Schedule Each</label>
               <br/>
-              <nb-select selected="1"  fullWidth>
-                <nb-option value="week">Weekly</nb-option>
-                <nb-option value="month">Monthly</nb-option>
+              <nb-select  [disabled]="mode != 'Add'" fullWidth id="runSchedule" name="runSchedule"  [(ngModel)]="filter.runSchedule" #runSchedule="ngModel" [ngClass]="{ 'is-invalid': f.submitted && runSchedule.invalid }" required>
+                <nb-option value="eachDemande">Demand</nb-option>
+                <nb-option value="eachMon">Monday</nb-option>
+                <nb-option value="eachTues">Tuesday</nb-option>
+                <nb-option value="eachWed">Wednesday</nb-option>
+                <nb-option value="eachThur">Thursday</nb-option>
+                <nb-option value="eachFri">Friday</nb-option>
+                <nb-option value="eachSat">Saturday</nb-option>
+                <nb-option value="eachSun">Sunday</nb-option>
+              </nb-select>
+          </div>
+          <div class="row"  *ngIf="filter.runSchedule != null && filter.runSchedule != 'eachDemande'">
+            <div class="form-group col-sm-6" >
+              <label for="runAt" class="label">Run At</label>
+              <br/>
+              <input *ngIf="mode == 'Add'" [nbTimepicker]="timepicker" [formControl]="formControl" nbInput fullWidth type="runAt" id="runAt"   name="runAt"   [ngClass]="{ 'is-invalid': f.submitted }" required>
+              <input *ngIf="mode != 'Add'" disabled [nbTimepicker]="timepicker" [formControl]="formControl" nbInput fullWidth type="runAt" id="runAt"   name="runAt"   [ngClass]="{ 'is-invalid': f.submitted }" required>
+              <nb-timepicker #timepicker required  > </nb-timepicker>
+            </div>
+            <div class="form-group col-sm-6" >
+              <label for="sortLogic" class="label">Sort Demand by</label>
+              <br/>
+              <nb-select  [disabled]="mode != 'Add'" fullWidth id="sortLogic" name="sortLogic"  [(ngModel)]="filter.sortLogic" #sortLogic="ngModel" [ngClass]="{ 'is-invalid': f.submitted && sortLogic.invalid }" required>
+                <nb-option value="byDateCreation">Date Creation</nb-option>
+                <nb-option value="byUrgency">Urgency</nb-option>
+                <nb-option value="lessNbrOfDaysThisMonth">Days Per Month</nb-option>
+                <nb-option value="lessNbrOfDaysThisWeek">Days Per Week</nb-option>
               </nb-select>
             </div>
-            <div class="form-group col-sm-6" >
-              <label for="runSchedule" class="label">Run At</label>
-              <br/>
-              <input [nbTimepicker]="timepicker" nbInput fullWidth type="text">
-              <nb-timepicker #timepicker></nb-timepicker>
-            </div>
+
           </div>
-          <button type="submit" nbButton status="danger">Submit</button>
+          <div class="buttons-row">
+            <button type="submit" nbButton status="danger"  [disabled] = "f.invalid">Submit</button>
+            <button  nbButton (click) = "Cancel();" >Cancel</button>
+          </div>
+          
         </form>
       </nb-card-body>
     </nb-card>

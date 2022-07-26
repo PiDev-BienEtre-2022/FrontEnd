@@ -20,8 +20,10 @@ import {
   NbToastrModule,
   NbWindowModule,
   NbTimepickerModule,
+  NbCalendarModule,
+  NbCalendarKitModule,
 } from '@nebular/theme';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -36,13 +38,24 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     NbDatepickerModule.forRoot(),
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
-    NbTimepickerModule.forRoot(),
+    NbTimepickerModule.forRoot({
+      localization: {
+        hoursText: 'Hr',
+        minutesText: 'Min',
+        secondsText: 'Sec',
+        ampmText: 'Am/Pm',
+      }
+    }),
     NbToastrModule.forRoot(),
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
     CoreModule.forRoot(),
     ThemeModule.forRoot(),
+    NbCalendarModule,
+    NbCalendarKitModule,
+    FormsModule,
+    ReactiveFormsModule
     
   ],
   bootstrap: [AppComponent],

@@ -1,0 +1,75 @@
+<nb-card>
+    <nb-card-header>
+       <span>Demand List : {{ range.start | date }} - {{ range.end | date }}</span>
+       <button  nbButton (click) = "OpenFilter(contentTemplate)"  size="small" shape="semi-round"><nb-icon icon="funnel"></nb-icon>Filter</button>
+    </nb-card-header>
+    <nb-card-body>
+        <nb-accordion>
+            <nb-accordion-item  *ngFor="let demand of demands">
+              <nb-accordion-item-header>
+                <span>Demand : {{demand.dateDemande | date}} |   </span>
+                <span *ngIf="demand.managerApprove == 'waiting'" style="color: blue;">Waiting</span> 
+                <span *ngIf="demand.managerApprove == 'approved'"  style="color: green;">Approved</span>    
+                <span *ngIf="demand.managerApprove == 'rejected'"  style="color: red;">Rejected</span>                
+             </nb-accordion-item-header>
+              <nb-accordion-item-body>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p><b>User :</b> {{demand.user.username}}</p>  
+                    </div>
+                    <div class="col-sm-4">
+                        <p><b>Urgency : </b>
+                            <span style="color:green" *ngIf = "demand.urgency=='notUrgent'">Not Urgent</span>
+                            <span style="color:orange" *ngIf = "demand.urgency=='urgent'">Urgent</span>
+                            <span style="color:red" *ngIf = "demand.urgency=='veryUrgent'">Very Urgent</span>
+                        </p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><b>Reason : </b>
+                            <span *ngIf = "demand.reason=='takeSomeRest'">Take Some Rest</span>
+                            <span *ngIf = "demand.reason=='mobilityIssues'">Mobility Issues</span>
+                            <span *ngIf = "demand.reason=='haveToStayAtHome'">Have To Stay At Home</span>
+                            <span  *ngIf = "demand.reason=='other'">Other</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <p><b>Note :</b> {{demand.noteEmp}}</p>  
+                    </div>
+                    <div class="col-sm-4">
+                        <p><b>System Approve : </b>
+                        <span *ngIf="demand.systemApprove == 'waiting'" style="color: blue;"><b>Waiting</b></span> 
+                        <span *ngIf="demand.systemApprove == 'approved'"  style="color: green;"><b>Approved</b></span>    
+                        <span *ngIf="demand.systemApprove == 'rejected'"  style="color: red;"><b>Rejected</b></span>                
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <input type="text" nbInput fullWidth id="note" name="note" placeholder="Note to the Employee" [(value)]="demand.noteManager"  required>                    
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="buttons-row" >
+                            <button *ngIf="demand.managerApprove != 'approved'"  (click) = "approve(demand);" nbButton status="success">Approve</button>
+                            <button  nbButton (click) = "reject(demand);" >Reject</button>
+                        </div>
+                    </div>
+                </div>
+              </nb-accordion-item-body>
+            </nb-accordion-item>
+          </nb-accordion>
+    </nb-card-body>
+</nb-card>
+<ng-template #contentTemplate let-data let-ref="dialogRef" style="width: 1000px;">
+     <nb-card>  
+      <nb-card-header>Filter By Demands Date Creation</nb-card-header>
+      <nb-card-body>
+        <nb-calendar-range style="display: contents;" [(range)]="range"></nb-calendar-range>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton (click)="filter(ref)">Filter</button>
+        <button nbButton (click)="ref.close()">Close Dialog</button>
+      </nb-card-footer>
+    </nb-card>
+</ng-template>
