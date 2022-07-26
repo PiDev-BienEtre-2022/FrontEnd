@@ -1,1 +1,90 @@
-<p>work-from-home works!</p>
+<nb-card>
+    <nb-card-header>
+       <span>Working From Home Demands Manager ({{filter.nom}})</span> 
+       <button  nbButton (click) = "ViewMyDemandList();"  size="small" shape="semi-round"><nb-icon icon="eye"></nb-icon> View My Demands Details</button>
+    </nb-card-header>
+
+    <nb-card-body>
+        <div class="row">
+            <div class="col-sm-5">
+                <nb-calendar 
+                    [(date)]="date" 
+                    [boundingMonth]="false"
+                    (dateChange)="handleDateChange($event)"   
+                    [min]="minDate"   
+                    showWeekNumber
+                    [filter]="filterDates">
+                </nb-calendar>
+            </div>
+            <div class="col-sm-7">
+                <b>Add New Demand on {{ date | date }}</b>
+                <hr/>
+                <form  id="demand-form" class="form" name="form" (ngSubmit)="f.form.valid && save()" #f="ngForm"  novalidate>
+                    <div class="form-group">
+                      <label for="noteEmp" class="label">Note</label>
+                      <textarea type="text" rows="2" nbInput fullWidth id="noteEmp" name="noteEmp"  [(ngModel)]="demand.noteEmp" #noteEmp="ngModel" [ngClass]="{ 'is-invalid': f.submitted && noteEmp.invalid }" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="urgency" class="label" >Urgency</label>
+                        <br/>
+                        <nb-select fullWidth  id="urgency" name="urgency"  [(ngModel)]="demand.urgency" #urgency="ngModel" [ngClass]="{ 'is-invalid': f.submitted && urgency.invalid }" required>
+                            <nb-option value="notUrgent">Not Urgent</nb-option>
+                            <nb-option value="urgent" >Urgent</nb-option>
+                            <nb-option value="veryUrgent" >Very Urgent</nb-option>
+                        </nb-select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reason" class="label" >Reason</label>
+                        <br/>
+                        <nb-select fullWidth  id="reason" name="reason"  [(ngModel)]="demand.reason" #reason="ngModel" [ngClass]="{ 'is-invalid': f.submitted && reason.invalid }" required>
+                            <nb-option value="takeSomeRest">Take Some Rest</nb-option>
+                            <nb-option value="mobilityIssues" >Mobility Issues</nb-option>
+                            <nb-option value="haveToStayAtHome" >Have To Stay At Home</nb-option>
+                            <nb-option value="other" >Other</nb-option>
+                        </nb-select>
+                    </div>
+                
+                    <div class="buttons-row">
+                      <button type="submit" nbButton status="danger"  [disabled] = "f.invalid">Submit</button>
+                      <button  nbButton (click) = "Clear();" >Clear</button>
+                    </div>
+                    
+                </form>
+                
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>
+<ng-template #contentTemplate let-info>
+    <nb-card style="min-width: 1000px;">
+        <nb-card-header>
+           <nb-select fullWidth [selected]="period" (selectedChange)="changePeriod($event)">
+            <nb-option value="thisMonth">This Month</nb-option>
+            <nb-option value="All">All</nb-option>
+          </nb-select>
+        </nb-card-header>
+        <nb-card-body>
+         
+                <nb-tabset fullWidth>
+                    <nb-tab tabTitle="Waiting">
+                       
+                        <ng2-smart-table [settings]="settings" [source]="waitingSource" >
+                        </ng2-smart-table>
+                    </nb-tab>
+                    <nb-tab tabTitle="Approved">
+                        
+                        <ng2-smart-table [settings]="settings" [source]="approvedSource" >
+                        </ng2-smart-table>
+                     
+                    </nb-tab>
+                    <nb-tab tabTitle="Rejected">
+                        
+                        <ng2-smart-table [settings]="settings" [source]="rejectedSource" >
+                        </ng2-smart-table>
+                     
+                    </nb-tab>
+                </nb-tabset>
+          
+        </nb-card-body>
+    </nb-card>
+</ng-template>

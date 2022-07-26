@@ -9,13 +9,14 @@ import {
   NbRadioModule,
   NbSelectModule,
   NbUserModule,
-  NbTimepickerModule,
+  NbTimepickerModule
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
 import { AddFilterComponent } from './add-filter/add-filter.component';
 import { FilterRoutingModule } from './filter-routing.module';
 import { ListFilterComponent } from './list-filter/list-filter.component';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 
 @NgModule({
@@ -35,6 +36,8 @@ import { ListFilterComponent } from './list-filter/list-filter.component';
     Ng2SmartTableModule,
     NbCardModule,
     NbTimepickerModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AddFilterComponent,

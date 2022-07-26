@@ -54,6 +54,8 @@ import { SecurityCamerasService } from './mock/security-cameras.service';
 import { MockDataModule } from './mock/mock-data.module';
 import { FilterData } from './data/FilterData';
 import { FilterService } from './mock/FilterService.service';
+import { DemandData } from './data/DemandData';
+import { DemandService } from './mock/DemandService.service';
 
 const socialLinks = [
   {
@@ -75,6 +77,7 @@ const socialLinks = [
 
 const DATA_SERVICES = [
   { provide: FilterData, useClass: FilterService },
+  { provide: DemandData, useClass: DemandService },
   { provide: UserData, useClass: UserService },
   { provide: ElectricityData, useClass: ElectricityService },
   { provide: SmartTableData, useClass: SmartTableService },

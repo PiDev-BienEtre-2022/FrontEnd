@@ -43,6 +43,8 @@ export class StateService implements OnDestroy {
   protected layoutState$ = new BehaviorSubject(this.layouts[0]);
   protected sidebarState$ = new BehaviorSubject(this.sidebars[0]);
 
+  data = undefined;
+
   alive = true;
 
   constructor(directionService: NbLayoutDirectionService) {

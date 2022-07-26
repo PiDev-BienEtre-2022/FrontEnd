@@ -8,6 +8,12 @@ export const MENU_ITEMS: NbMenuItem[] = [
     home: true,
   },
   {
+    title: 'Demands List',
+    icon: 'list-outline',
+    link: '/pages/demand-list',
+    home: true,
+  },
+  {
     title: 'Team Filter',
     icon: 'funnel-outline',
     link: '/pages/filter/list',

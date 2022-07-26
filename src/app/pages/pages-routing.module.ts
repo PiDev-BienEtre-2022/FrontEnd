@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
 import { WorkFromHomeComponent } from './work-from-home/work-from-home.component';
+import { DemandListComponent } from './demand-list/demand-list.component';
 
 const routes: Routes = [{
   path: '',
@@ -23,6 +24,10 @@ const routes: Routes = [{
     {
       path: 'work-from-home',
       component: WorkFromHomeComponent,
+    },
+    {
+      path: 'demand-list',
+      component: DemandListComponent,
     },
     {
       path: 'iot-dashboard',
