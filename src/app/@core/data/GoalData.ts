@@ -8,6 +8,7 @@ export abstract class GoalData {
     abstract add(Goal: Goal, idEval) ;
     abstract edit(Goal: Goal, idEval, idCat);
     abstract editPercentage(Goal: Goal, idEval, idCat);
+    abstract stat(id : number);
 
     
 }

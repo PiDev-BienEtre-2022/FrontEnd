@@ -1,0 +1,20 @@
+nb-accordion-item {border: 1px solid #ccc;margin-bottom: 10px;background: #fbfbfb;}
+nb-accordion{  box-shadow: none !important; 
+    border-radius: 0 !important; 
+}
+
+
+.header {
+    padding: 10px 30px !important;
+    font-family: cursive !important;
+    font-weight: inherit !important; 
+}
+
+.training nb-accordion-item:first-child {
+    border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important; 
+}
+.message{color: red; font-weight: 600;}
+button {font-family: cursive !important;
+    text-transform: capitalize !important;
+    padding: 8px 20px !important;}

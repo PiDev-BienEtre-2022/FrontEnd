@@ -1,1 +1,12 @@
-<p>list-training works!</p>
+<nb-card>
+    <nb-card-header>
+       Training List
+       <button (click)="onCreateClick($event)" nbButton status="primary" class="addBtn">Add Training</button>
+    </nb-card-header>
+    <nb-card-body>
+        <div class="alert {{type}}" role="alert" [style.display]='displayDelete'>{{message}}</div>
+
+        <ng2-smart-table [settings]="settings" [source]="source" (delete)="onDeleteConfirm($event)" (edit)="onEditConfirm($event)">
+        </ng2-smart-table>
+    </nb-card-body>
+</nb-card>

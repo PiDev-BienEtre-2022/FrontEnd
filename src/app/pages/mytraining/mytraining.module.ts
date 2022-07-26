@@ -11,12 +11,13 @@ import {
   NbSelectModule,
   NbUserModule,
   NbTimepickerModule,
+  NbAccordionModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { ThemeModule } from '../../@theme/theme.module';
-import { AddTrainingComponent } from './add-training/add-training.component';
-import { ListTrainingComponent } from './list-training/list-training.component';
-import { TrainingRoutingModule } from './training-routing.module';
+import { mytrainingRoutingModule } from './mytraining-routing.module';
+import { AllTrainingComponent } from './all-training/all-training.component';
+import { AllowdTrainingComponent } from './allowd-training/allowd-training.component';
 
 
 @NgModule({
@@ -30,18 +31,18 @@ import { TrainingRoutingModule } from './training-routing.module';
     NbCheckboxModule,
     NbRadioModule,
     NbDatepickerModule,
-    TrainingRoutingModule,
+    mytrainingRoutingModule,
     NbSelectModule,
     NbIconModule,
     Ng2SmartTableModule,
     NbCardModule,
     NbTimepickerModule,
     FormsModule,
-
+    NbAccordionModule
   ],
   declarations: [
-    ListTrainingComponent,
-    AddTrainingComponent
+    AllTrainingComponent,
+    AllowdTrainingComponent
   ],
 })
-export class TrainingModule { }
+export class mytrainingModule { }

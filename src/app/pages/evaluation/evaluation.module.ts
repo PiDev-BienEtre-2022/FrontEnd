@@ -23,6 +23,7 @@ import { UserEvaluationComponent } from './user-evaluation/user-evaluation.compo
 import { ListEvaluationComponent } from './list-evaluation/list-evaluation.component';
 import { DetailsEvaluationComponent } from './details-evaluation/details-evaluation.component';
 import { EditGoalComponent } from './edit-goal/edit-goal.component';
+import { ChartModule } from 'angular2-chartjs';
 
 
 @NgModule({
@@ -45,7 +46,7 @@ import { EditGoalComponent } from './edit-goal/edit-goal.component';
     FormsModule,
     NbTabsetModule,
     NbAccordionModule,
-
+    ChartModule,
   ],
   declarations: [
     AddEvaluationComponent,

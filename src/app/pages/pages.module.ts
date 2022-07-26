@@ -13,6 +13,7 @@ import { CategoryComponent } from './category/category.component';
 import { EvaluationComponent } from './evaluation/evaluation.component';
 import { MyevaluationComponent } from './myevaluation/myevaluation.component';
 import { TrainingComponent } from './training/training.component';
+import { mytrainingComponent } from './mytraining/mytraining.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     ECommerceModule,
     MiscellaneousModule,
     Ng2SmartTableModule,
-    NbCardModule
+    NbCardModule,
+
   ],
   declarations: [
     PagesComponent,
@@ -34,6 +36,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     EvaluationComponent,
     MyevaluationComponent,
     TrainingComponent,
+    mytrainingComponent,
   ],
 })
 export class PagesModule {

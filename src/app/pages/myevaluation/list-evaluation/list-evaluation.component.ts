@@ -22,11 +22,6 @@ export class ListEvaluationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.queryParams
-      .subscribe(params => {
-        this.id = params.id;
-      } );
-
     this.service.currentEval(this.id).subscribe((data: any)=>{
       this.currentEval = data;
       if(Object.keys(this.currentEval).length!=0){

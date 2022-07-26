@@ -1,0 +1,32 @@
+<nb-card>
+    <nb-card-header>
+       Trainings List
+    </nb-card-header>
+    <nb-card-body>
+        <div class="training">
+            <div class="alert alert-success" role="alert">
+                <small>
+                    <i class="fas fa-info-circle"></i> &nbsp; <b> Note: </b> 
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; - Please, click on the training label to see if you can participate an 
+                    indication will be displayed.
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp; - If you have no old evaluation no message will be displayed.
+                </small>
+            </div>
+            <nb-accordion>
+                <nb-accordion-item *ngFor="let traningsList of traningsList">
+                 <nb-accordion-item-header class="header">{{traningsList.label}}</nb-accordion-item-header>
+                 <nb-accordion-item-body>
+                  <small><b>Date : </b>{{traningsList.date | date }}</small> <br>
+                  <small><b>Place : </b>{{traningsList.place}}</small> <br>
+                  <small class="message" *ngIf="traningsList.message != 'ok'">
+                    {{traningsList.message}}
+                   </small> <br>
+                   <button *ngIf="traningsList.message == 'ok'" nbButton status="primary" class="addBtn">Paticipate</button>
+                 </nb-accordion-item-body>
+                </nb-accordion-item>
+              </nb-accordion>
+        </div>
+     </nb-card-body>
+</nb-card>

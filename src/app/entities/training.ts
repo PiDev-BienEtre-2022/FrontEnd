@@ -8,4 +8,7 @@ export class Training {
     place :string;
     status :string;
     category :Category;
+    message :string;
+    categoryname :string;
+
 }
