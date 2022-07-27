@@ -22,11 +22,12 @@ import {
   NbTimepickerModule,
 } from '@nebular/theme';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { QuizComponent } from './quiz/quiz.component';
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, QuizComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
